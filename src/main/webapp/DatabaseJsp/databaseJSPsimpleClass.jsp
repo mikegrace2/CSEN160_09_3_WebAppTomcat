@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page import="java.sql.ResultSet" %>
-<%@ page import="csen160.DatabaseSimpleClass" %>
+<%@ page import="com.csen160.WebAppSources.DatabaseSimpleClass" %>
 <!DOCTYPE html>
 <html>
 <head>

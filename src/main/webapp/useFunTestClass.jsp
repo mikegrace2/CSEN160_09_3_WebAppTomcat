@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="csen160.FunUtils" %>
+<%@ page import="com.csen160.WebAppSources.FunUtils" %>
 <!DOCTYPE html>
 <html>
 <head>
