@@ -17,7 +17,7 @@ import java.util.Observer;
 
 import javax.swing.JPanel;
 
-import MVC3.model.Account;
+import com.csen160.SwingMVC.MVC3.model.Account;
 
 @SuppressWarnings({ "serial", "deprecation" })
 public class AssetPieChartView extends JPanel implements Observer {

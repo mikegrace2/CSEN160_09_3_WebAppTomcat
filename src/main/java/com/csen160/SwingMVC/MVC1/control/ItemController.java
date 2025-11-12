@@ -12,8 +12,8 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.TitledBorder;
 
-import MVC1.model.ItemModel;
-import MVC1.view.AView;
+import com.csen160.SwingMVC.MVC1.model.ItemModel;
+import com.csen160.SwingMVC.MVC1.view.AView;
 
 /**
  * This is the model class that holds the name and price of an item

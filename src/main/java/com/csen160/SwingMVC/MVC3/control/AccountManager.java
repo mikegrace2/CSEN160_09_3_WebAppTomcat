@@ -9,10 +9,10 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.TitledBorder;
 
-import MVC3.model.Account;
-import MVC3.view.AccountBarGraphView;
-import MVC3.view.AccountTextView;
-import MVC3.view.AssetPieChartView;
+import com.csen160.SwingMVC.MVC3.model.Account;
+import com.csen160.SwingMVC.MVC3.view.AccountBarGraphView;
+import com.csen160.SwingMVC.MVC3.view.AccountTextView;
+import com.csen160.SwingMVC.MVC3.view.AssetPieChartView;
 
 @SuppressWarnings("serial")
 public class AccountManager extends JFrame {

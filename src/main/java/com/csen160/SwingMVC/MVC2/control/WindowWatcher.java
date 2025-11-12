@@ -11,8 +11,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 
-import MVC2.model.ColorData;
-import MVC2.view.ColorPanel;
+import com.csen160.SwingMVC.MVC2.model.ColorData;
+import com.csen160.SwingMVC.MVC2.view.ColorPanel;
 
 @SuppressWarnings("serial")
 public class WindowWatcher extends JFrame implements ItemListener {

@@ -7,7 +7,7 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 
-import MVC3.model.Account;
+import com.csen160.SwingMVC.MVC3.model.Account;
 
 @SuppressWarnings("serial")
 public class AccountBarGraphView extends AbstractAccountView {

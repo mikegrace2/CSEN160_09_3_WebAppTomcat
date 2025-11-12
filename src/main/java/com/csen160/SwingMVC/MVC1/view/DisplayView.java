@@ -9,7 +9,7 @@ import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import javax.swing.border.TitledBorder;
 
-import MVC1.model.ItemModel;
+import com.csen160.SwingMVC.MVC1.model.ItemModel;
 
 public class DisplayView extends AView {
 	private JLabel label;

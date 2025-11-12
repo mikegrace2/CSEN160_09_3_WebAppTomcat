@@ -13,7 +13,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import MVC3.model.Account;
+import com.csen160.SwingMVC.MVC3.model.Account;
 
 @SuppressWarnings("serial")
 public class AccountController extends JPanel {

@@ -8,7 +8,7 @@ import java.util.Locale;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
-import MVC3.model.Account;
+import com.csen160.SwingMVC.MVC3.model.Account;
 
 @SuppressWarnings("serial")
 public class AccountTextView extends AbstractAccountView {

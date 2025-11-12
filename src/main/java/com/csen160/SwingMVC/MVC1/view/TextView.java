@@ -9,7 +9,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.border.TitledBorder;
 
-import MVC1.model.ItemModel;
+import com.csen160.SwingMVC.MVC1.model.ItemModel;
 
 public class TextView extends AView {
 	private JTextArea area;

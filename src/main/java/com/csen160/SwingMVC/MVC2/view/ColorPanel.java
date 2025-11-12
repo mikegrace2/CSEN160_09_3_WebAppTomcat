@@ -11,7 +11,7 @@ import java.util.Observer;
 
 import javax.swing.JPanel;
 
-import MVC2.model.ColorData;
+import com.csen160.SwingMVC.MVC2.model.ColorData;
 
 @SuppressWarnings({ "serial", "deprecation" })
 public class ColorPanel extends JPanel implements Observer {

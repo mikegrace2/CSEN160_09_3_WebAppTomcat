@@ -2,7 +2,7 @@ package com.csen160.SwingMVC.MVC3.Amain;
 
 import javax.swing.JFrame;
 
-import MVC3.control.AccountManager;
+import com.csen160.SwingMVC.MVC3.control.AccountManager;
 
 public class Main {
 	public static void main(String args[]) {

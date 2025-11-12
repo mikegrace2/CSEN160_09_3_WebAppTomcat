@@ -1,9 +1,9 @@
 package com.csen160.SwingMVC.MVC1.Amain;
 
-import MVC1.control.ItemController;
-import MVC1.model.ItemModel;
-import MVC1.view.DisplayView;
-import MVC1.view.TextView;
+import com.csen160.SwingMVC.MVC1.control.ItemController;
+import com.csen160.SwingMVC.MVC1.model.ItemModel;
+import com.csen160.SwingMVC.MVC1.view.DisplayView;
+import com.csen160.SwingMVC.MVC1.view.TextView;
 
 public class MVC_Demo {
 	@SuppressWarnings("deprecation")
