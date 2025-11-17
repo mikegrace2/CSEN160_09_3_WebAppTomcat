@@ -13,30 +13,34 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * Servlet implementation class DatabaseServlet
  */
-@WebServlet("/DatabaseJspServlet")
-public class DatabaseJspServlet extends HttpServlet {
-    private static final Logger logger = LoggerFactory.getLogger(DatabaseJspServlet.class);
+@WebServlet("/LoginServlet")
+public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public DatabaseJspServlet() {
+    public LoginServlet() {
         super();
-        logger.info("DatabaseJspServlet() constructor called");
+        // TODO Auto-generated constructor stub
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        logger.info("DatabaseJspServlet() doGet called");
+		response.setContentType("text/html");
+		System.out.println("LoginServlet LoginServlet LoginServlet LoginServlet");
+		
+		String login=request.getParameter("login");
+		String password=request.getParameter("password");
+		System.out.println("LoginServlet: login="+login);
+		System.out.println("LoginServlet: password="+password);
+		
 		Connection conn = null;
 		Statement stmt = null;
 
@@ -46,38 +50,42 @@ public class DatabaseJspServlet extends HttpServlet {
 			stmt = conn.createStatement();
 
 			// Execute query
-			String sql = "SELECT * FROM COFFEES";
-			response.setContentType("text/html");
+			String sql = "SELECT * FROM USERS where username='"+login+"' AND password_hash='"+password+"'";
+			System.out.println("LoginServlet: sql="+sql);
+			
 			ResultSet rs = stmt.executeQuery(sql);
-            logger.info("DatabaseJspServlet() query =" + sql);
-
-			String[][] myArr=new String[5][100];
-			for (int i=0;rs.next();i++) {
-				myArr[0][i]=rs.getString(1);
-				myArr[1][i]=""+rs.getInt(2);
-				myArr[2][i]=""+rs.getFloat(3);
-				myArr[3][i]=""+rs.getInt(4);
-				myArr[4][i]=""+rs.getInt(5);				
+						
+			boolean isOK=false;
+			
+			while (rs.next()) {
+				System.out.println(
+						"ID: "   + rs.getInt(1) + 
+						"\tusername: " + rs.getString(2)    + 
+						"\tpassword_hash: " + rs.getString(3));
+				isOK=true;
 			}
 			
-			HttpSession session = request.getSession();
-			session.setAttribute("myArr", myArr);
-
-            response.sendRedirect("http://localhost:7080/CSEN160_09_3_WebAppTomcat_war/DatabaseJsp/databaseJSP.jsp");
-			//response.sendRedirect("http://localhost:8080/Week07_D_Tomcat3TierWebApp/DatabaseJsp/databaseJSP.jsp");
-		} catch (SQLException e) {
-			e.printStackTrace(); // Handle errors for JDBC
-            logger.error("SQLException: ", e);
+			//HttpSession session = request.getSession();
+			//session.setAttribute("myArr", myArr);
+									
+			if (isOK) {
+				String red="/CSEN160_09_3_WebAppTomcat_war_exploded/login/LoginCorrect.jsp";
+				response.sendRedirect(red);
+			}else {
+				String red="/CSEN160_09_3_WebAppTomcat_war_exploded/login/LoginFail.jsp";
+				response.sendRedirect(red);
+			}
+				
+		} catch (SQLException se) {
+			se.printStackTrace(); // Handle errors for JDBC
 		} catch (Exception e) {
 			e.printStackTrace(); // Handle errors for Class.forName
-            logger.error("Exception: ", e);
 		} finally {
 			try {
 				stmt.close();
 				conn.close();				
 			} catch (SQLException e) {
 				e.printStackTrace();
-                logger.error("finally Exception: ", e);
 			}
 		}		
 	}
@@ -86,7 +94,8 @@ public class DatabaseJspServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        logger.info("DatabaseJspServlet() doPost called");
+		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
+
 }

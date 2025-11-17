@@ -1,5 +1,8 @@
 package com.csen160.WebAppSources;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -7,7 +10,10 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class DatabaseSimpleClass {
+    private static final Logger logger = LoggerFactory.getLogger(DatabaseSimpleClass.class);
+
 	public static String[][] getTable() {
+        logger.info("DatabaseSimpleClass.getTable() called");
 		Connection conn = null;
 		Statement stmt = null;
 
@@ -18,7 +24,7 @@ public class DatabaseSimpleClass {
 
 			// Execute query
 			String sql = "SELECT * FROM COFFEES";
-			System.out.println("\"" + sql + "\";\n");
+            logger.info("\"" + sql + "\";\n");
 
 			ResultSet rs = stmt.executeQuery(sql);
 			
@@ -32,16 +38,19 @@ public class DatabaseSimpleClass {
 			}
 			
 			return myArr;
-		} catch (SQLException se) {
-			se.printStackTrace(); // Handle errors for JDBC
+		} catch (SQLException e) {
+			e.printStackTrace(); // Handle errors for JDBC
+            logger.error("SQLException: ", e);
 		} catch (Exception e) {
 			e.printStackTrace(); // Handle errors for Class.forName
+            logger.error("Exception: ", e);
 		} finally {
 			try {
 				stmt.close();
 				conn.close();				
 			} catch (SQLException e) {
 				e.printStackTrace();
+                logger.error("Finally Exception: ", e);
 			}
 		}
 		return null;

@@ -5,6 +5,9 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
@@ -18,6 +21,7 @@ import java.sql.Statement;
  */
 @WebServlet("/DatabaseServlet")
 public class DatabaseServlet extends HttpServlet {
+    private static final Logger logger = LoggerFactory.getLogger(DatabaseServlet.class);
 	private static final long serialVersionUID = 1L;
        
     /**
@@ -25,13 +29,15 @@ public class DatabaseServlet extends HttpServlet {
      */
     public DatabaseServlet() {
         super();
-        // TODO Auto-generated constructor stub
+        logger.info("DatabaseServlet()" + " constructor called");
     }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        logger.info("DatabaseJspServlet() doGet called");
+
 		Connection conn = null;
 		Statement stmt = null;
 
@@ -42,7 +48,7 @@ public class DatabaseServlet extends HttpServlet {
 
 			// Execute query
 			String sql = "SELECT * FROM COFFEES";
-			System.out.println("\"" + sql + "\";\n");
+            logger.info("\"" + sql + "\";\n");
 			
 			response.setContentType("text/html");
 			PrintWriter pw=response.getWriter();
@@ -67,16 +73,19 @@ public class DatabaseServlet extends HttpServlet {
 				pw.println("  </tr>\n");						
 			}
 			pw.println("</table>\n");
-		} catch (SQLException se) {
-			se.printStackTrace(); // Handle errors for JDBC
+		} catch (SQLException e) {
+			e.printStackTrace(); // Handle errors for JDBC
+            logger.error("SQLException: ", e);
 		} catch (Exception e) {
 			e.printStackTrace(); // Handle errors for Class.forName
+            logger.error("Exception: ", e);
 		} finally {
 			try {
 				stmt.close();
 				conn.close();				
 			} catch (SQLException e) {
 				e.printStackTrace();
+                logger.error("Finally Exception: ", e);
 			}
 		}		
 	}
@@ -85,8 +94,7 @@ public class DatabaseServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+        logger.info("DatabaseServlet() doPost called");
 		doGet(request, response);
 	}
-
 }
