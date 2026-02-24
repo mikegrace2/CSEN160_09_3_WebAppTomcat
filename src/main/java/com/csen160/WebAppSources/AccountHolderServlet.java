@@ -80,7 +80,7 @@ public class AccountHolderServlet extends HttpServlet {
             }
 			session.setAttribute("myArr", myArr);
 												
-			String red="/CSEN160_09_3_WebAppTomcat_war_exploded/AccountHolder/AccountHolderShow.jsp";
+			String red="/CSEN160_09_3_WebAppTomcat_war/AccountHolder/AccountHolderShow.jsp";
 			response.sendRedirect(red);
 				
 		} catch (SQLException se) {

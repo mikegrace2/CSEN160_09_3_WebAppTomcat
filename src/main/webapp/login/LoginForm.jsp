@@ -20,7 +20,7 @@
     <h1>Sign in</h1>
     <div class="hint">Test user: john_doe / SecurePass123</div>
     <div class="hint">SQL Injection String = ' OR '1'='1 </div>
-    <form action="/CSEN160_09_3_WebAppTomcat_war_exploded/LoginServlet" method="post" onsubmit="return validateLogin();">
+    <form action="<%= request.getContextPath() %>/LoginServlet" method="post" onsubmit="return validateLogin();">
         <label for="login">Login</label>
         <input id="login" name="login" type="text" autocomplete="username" />
         <label for="password">Password</label>
