@@ -1,4 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%!
+    // Small helper to escape user-supplied text so it can't inject HTML/JS.
+    private String escapeHtml(String s) {
+        if (s == null) return "";
+        // Important: replace ampersand first
+        return s.replace("&", "&amp;")
+                .replace("<", "&lt;")
+                .replace(">", "&gt;")
+                .replace("\"", "&quot;")
+                .replace("'", "&#x27;");
+    }
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,7 +30,11 @@
 <body>
 <div class="box">
     <h1>Sign in:</h1>
-    <div class="hint">Test user: <script>alert(1)</script></div>
+    <!-- Render the hint safely by escaping HTML characters in Java (no JSTL dependency needed) -->
+    <!-- Default now shows a sample JS payload escaped so you can verify escaping in the rendered page -->
+    <div class="hint">Test user: <%= escapeHtml(request.getParameter("hint") != null ? request.getParameter("hint") : "<script>alert(\"Inject something\")</script>") %></div>
+    <!-- For convenience also show the escaped form (HTML entities) so it's obvious in the rendered page source -->
+    <div class="hint" style="font-size:12px; color:#999; margin-top:6px;">Escaped form (what you'll see in page source): &lt;script&gt;alert(&quot;Inject something&quot;)&lt;/script&gt;</div>
     <form action="<%= request.getContextPath() %>/LoginXSSServlet" method="post" onsubmit="return validateLogin();">
         <label for="login">Login</label>
         <input id="login" name="login" type="text" autocomplete="username" />
